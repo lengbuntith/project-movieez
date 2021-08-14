@@ -4,7 +4,7 @@
     <v-dialog v-model="dialog" width="90%">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" height="50">
-          Post New Movie
+          Add Multiple movie
         </v-btn>
       </template>
 
