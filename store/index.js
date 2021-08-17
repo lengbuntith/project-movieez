@@ -1,16 +1,21 @@
 export const state = () => ({
-    search_movies: []
+    search_movies: [],
+    select_movie: ''
 })
 
 export const getters = {
     reverseSearchMovies: state => {
         return state.search_movies;
-      }
+    }
 }
   
 export const mutations = {
     SEARCH_MOVIES(state, data) {
         state.search_movies = data
+    },
+
+    SELECT_MOVIE(state, data){
+        state.select_movie = data
     }
 }
 

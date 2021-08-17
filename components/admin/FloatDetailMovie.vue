@@ -38,7 +38,6 @@ export default {
       let text = ''
       for (let i = 0; i < this.movie.genres.length; i++) {
         text = i === 0 ? '' : `${text} `  +  this.movie.genres[i]
-        console.log(text)
       }
       return text
     },
