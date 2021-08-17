@@ -4,13 +4,13 @@
     <v-dialog v-model="dialog" width="90%">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" height="50">
-          Post New Movie
+          Add Multiple movie
         </v-btn>
       </template>
 
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
-          Add new movie
+          Submit new
           <v-spacer />
           <v-btn @click="dialog = false" icon>
             <v-icon>mdi-close</v-icon>
