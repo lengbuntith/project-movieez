@@ -1,12 +1,13 @@
 export const state = () => ({
     search_movies: [],
-    select_movie: ''
+    select_movie: '',
+    home_movies: []
 })
 
 export const getters = {
     reverseSearchMovies: state => {
         return state.search_movies;
-    }
+    },
 }
   
 export const mutations = {
@@ -16,6 +17,10 @@ export const mutations = {
 
     SELECT_MOVIE(state, data){
         state.select_movie = data
+    },
+
+    HOME_MOVIES(state, data){
+        state.home_movies = data
     }
 }
 
@@ -26,7 +31,6 @@ export const actions = {
         .then((res) => {
             console.log("🚀 ~ file: index.js ~ line 19 ~ searchMovies ~ res", res)
             commit("SEARCH_MOVIES", res.data.data.movies)
-        })
-       
+        })  
     }
 }

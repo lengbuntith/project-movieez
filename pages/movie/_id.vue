@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <!-- video player -->
     <v-card class="d-flex align-center justify-center" height="80vh">
       <iframe
@@ -40,7 +40,7 @@
         <v-sheet height="150"></v-sheet>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -59,9 +59,7 @@ export default {
     async getMovie() {
       let id = this.$route.params.id
       const res = await this.$supabase.from('movies').select('*').eq('id', id)
-
       console.log('get movie', res)
-
       this.movie = res.data[0]
     },
   },

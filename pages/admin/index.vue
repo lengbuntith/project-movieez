@@ -2,7 +2,11 @@
   <v-container class="mt-5">
 
     <div class=" d-flex justify-end mb-6">
-        <post-movie />
+        <v-btn @click="()=>{
+              this.$router.push('/admin/add-new')
+              }" medium elevation="" color="primary">
+              Post New Movie
+        </v-btn>
     </div>
 
     <v-data-table
@@ -20,9 +24,8 @@
 </template>
 
 <script>
-import PostMovie from '~/components/admin/PostMovie.vue'
 export default {
-  components: { PostMovie },
+  components: {  },
   data() {
     return {
       movies: [],

@@ -86,5 +86,9 @@ export default {
         ['@babel/plugin-proposal-private-property-in-object', { loose: true }]
       ]
     }
+  },
+
+  generate: {
+    fallback: '404.html'
   }
 }

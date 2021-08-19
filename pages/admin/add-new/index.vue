@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- dialog -->
-    <div class="d-flex justify-end mb-6">
+    <div class="d-flex justify-center mb-6">
       <v-dialog v-model="dialog" width="90%">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -86,48 +86,26 @@
 
       <v-text-field
         type="text"
+        label="Movie Genres"
+        append-icon=""
+        v-model="movie.genres"
+        outlined
+        color
+      ></v-text-field>
+
+      <v-textarea
+        type="text"
         label="Movie description"
         v-model="movie.description"
         append-icon=""
         outlined
         color
-      ></v-text-field>
-
-      <v-file-input
-        v-model="movie.files"
-        color="deep-purple accent-4"
-        counter
-        label="File input"
-        multiple
-        placeholder="Select your files"
-        prepend-icon="mdi-paperclip"
-        outlined
-        :show-size="1000"
-      >
-        <template v-slot:selection="{ index, text }">
-          <v-chip
-            v-if="index < 2"
-            color="deep-purple accent-4"
-            dark
-            label
-            small
-          >
-            {{ text }}
-          </v-chip>
-
-          <span
-            v-else-if="index === 2"
-            class="text-overline grey--text text--darken-3 mx-2"
-          >
-            +{{ files.length - 2 }} File(s)
-          </span>
-        </template>
-      </v-file-input>
+      ></v-textarea>
     </v-card>
     <!-- end input field -->
 
     <!-- copy torrents -->
-    <v-card class="bg-white pa-10 mt-4">
+    <v-card class="bg-white pa-10 mt-4 text-center">
       <a style="text-decoration: none" :href="movie.torrent" download="">
         <v-btn color="primary"> Download Torrent </v-btn>
       </a>
@@ -138,6 +116,7 @@
     <!-- upload torrent to streamtape -->
     <v-card class="bg-white pa-10 mt-4">
       <v-text-field
+        @click="getUrl"
         type="text"
         label="Url Download"
         v-model="url"
@@ -179,9 +158,7 @@
         </div>
       </div>
 
-      <v-btn @click="postMovie">
-        Post Movie
-      </v-btn>
+      <v-btn @click="postMovie"> Post Movie </v-btn>
     </v-card>
     <!-- end upload to supabase -->
   </div>
@@ -216,6 +193,7 @@ export default {
       name: '',
       year: '',
       description: '',
+      genres: '',
       thumbnail: '',
       rating: 0,
       files: [],
@@ -225,16 +203,25 @@ export default {
     url: '',
     remoteId: '',
     remoteStatus: '',
-    remoteUrl: ''
+    remoteUrl: '',
   }),
 
   methods: {
     selectMovie(movie) {
       console.log('select movie', movie)
+
+      let genre = ''
+      for (let i = 0; i < movie.genres.length; i++) {
+        genre = genre + movie.genres[i]
+      }
+
+      console.log('genres', genre)
+
       this.movie = {
         name: movie.title,
         year: movie.year,
         description: movie.description_full,
+        genres: genre,
         rating: movie.rating,
         thumbnail: movie.medium_cover_image,
         files: [],
@@ -286,25 +273,32 @@ export default {
           console.log(Object.values(res.data.result))
           var value = Object.values(res.data.result)
           this.remoteStatus = value[0].status
-          this.remoteUrl = 'https://streamtape.com/e/'+ value[0].linkid + '/'
+          this.remoteUrl = 'https://streamtape.com/e/' + value[0].linkid + '/'
           console.log(this.remoteStatus)
           console.log(this.remoteUrl)
         })
     },
 
     async postMovie() {
-      const res = await this.$supabase
-        .from('movies')
-        .insert(
-          [{ 
-            name: this.movie.name, 
-            imdb: this.movie.rating,
-            video: this.remoteUrl,
-            thumbnail: this.movie.thumbnail,
-            genre_id: '',
-            synopsis: this.movie.description
-          }])
+      const res = await this.$supabase.from('movies').insert([
+        {
+          name: this.movie.name,
+          imdb: this.movie.rating,
+          video: this.remoteUrl,
+          thumbnail: this.movie.thumbnail,
+          genres: this.movie.genres,
+          synopsis: this.movie.description,
+        },
+      ])
       console.log('post movie', res)
+    },
+
+    getUrl() {
+      setTimeout(async () => {
+        const text = await navigator.clipboard.readText()
+        console.log(text)
+        this.url = text
+      }, 1000)
     },
   },
 
