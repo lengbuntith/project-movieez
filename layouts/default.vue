@@ -1,6 +1,5 @@
 <template>
 <!-- hello world -->
-<!-- hello world 2 -->
   <v-app id="inspire">
     <the-header />
 
