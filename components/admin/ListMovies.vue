@@ -1,4 +1,5 @@
 <template>
+  <!-- Hello vue -->
   <v-row>
     <v-col
       v-for="m in movies_yts"
