@@ -10,7 +10,7 @@
 
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
-          Submit Change
+          Submit changed
           <v-spacer />
           <v-btn @click="dialog = false" icon>
             <v-icon>mdi-close</v-icon>
