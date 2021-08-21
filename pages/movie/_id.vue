@@ -4,6 +4,7 @@
     <v-card class="d-flex align-center justify-center" height="80vh">
       <iframe
         :src="movie.video"
+        name="subs:https://bicfdwigabzwxeymwsnv.supabase.in/storage/v1/object/public/database/subtitles/khmer.srt"
         width="100%"
         height="100%"
         allowfullscreen
