@@ -158,8 +158,18 @@
         </div>
       </div>
 
-      <v-btn @click="postMovie"> Post Movie </v-btn>
+      <div class="d-flex justify-center">
+        <v-btn v-if="postStatus === ''" class="" color="primary" @click="postMovie"> Post Movie </v-btn>
+         <div v-else class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
     </v-card>
+
     <!-- end upload to supabase -->
   </div>
 </template>
@@ -204,6 +214,8 @@ export default {
     remoteId: '',
     remoteStatus: '',
     remoteUrl: '',
+
+    postStatus: ''
   }),
 
   methods: {
@@ -280,6 +292,7 @@ export default {
     },
 
     async postMovie() {
+      this.postStatus = 'start'
       const res = await this.$supabase.from('movies').insert([
         {
           name: this.movie.name,
@@ -291,6 +304,7 @@ export default {
         },
       ])
       console.log('post movie', res)
+      this.postStatus = ''
     },
 
     getUrl() {
