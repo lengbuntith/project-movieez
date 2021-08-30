@@ -57,7 +57,13 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseUrl: 'https://yts.mx/api/v2/'
+    proxy: true 
+  },
+
+  proxy: {
+    '/api1/': { target: 'https://yts.mx/api/v2/', pathRewrite: {'^/api1/': ''} },
+    '/api2/': { target: 'https://api.streamtape.com/', pathRewrite: {'^/api2/': ''} },
+    '/api3/': { target: 'https://doodapi.com/api/', pathRewrite: {'^/api3/': ''} }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

@@ -1,23 +1,19 @@
 <template>
-  <div>
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title style="cursor: pointer" @click="goHome">Movieez</v-toolbar-title>
-    </v-app-bar>
+  <div id="navbar">
 
-    <v-navigation-drawer v-model="drawer" fixed temporary>
-      <!--  -->
-    </v-navigation-drawer>
+    <LeftSide />
+    <TopSide />
+  
   </div>
 </template>
 
 <script>
+import LeftSide from "./LeftSide.vue"
+import TopSide from "./TopSide.vue"
 export default {
-  data: () => ({ drawer: null }),
-  methods: {
-    goHome() {
-      this.$router.push('/')
-    },
-  },
+  components: {
+    LeftSide,
+    TopSide
+  }  
 }
 </script>

@@ -133,9 +133,20 @@
           :disabled="loading"
           color="blue-grey"
           class="ma-2 white--text"
-          @click="remoteUpload"
+          @click="remoteUpload('streamtape')"
         >
           remoteUpload to streamptape
+          <v-icon right dark> mdi-cloud-upload </v-icon>
+        </v-btn>
+
+        <v-btn
+          :loading="loading"
+          :disabled="loading"
+          color="blue-grey"
+          class="ma-2 white--text"
+          @click="remoteUpload('doodstream')"
+        >
+          remoteUpload to DoodStream
           <v-icon right dark> mdi-cloud-upload </v-icon>
         </v-btn>
       </div>
@@ -159,15 +170,21 @@
       </div>
 
       <div class="d-flex justify-center">
-        <v-btn v-if="postStatus === ''" class="" color="primary" @click="postMovie"> Post Movie </v-btn>
-         <div v-else class="lds-ellipsis">
+        <v-btn
+          v-if="postStatus === ''"
+          class=""
+          color="primary"
+          @click="postMovie"
+        >
+          Post Movie
+        </v-btn>
+        <div v-else class="lds-ellipsis">
           <div></div>
           <div></div>
           <div></div>
           <div></div>
         </div>
       </div>
-
     </v-card>
 
     <!-- end upload to supabase -->
@@ -215,7 +232,7 @@ export default {
     remoteStatus: '',
     remoteUrl: '',
 
-    postStatus: ''
+    postStatus: '',
   }),
 
   methods: {
@@ -243,24 +260,44 @@ export default {
       this.dialog = false
     },
 
-    remoteUpload() {
-      console.log('start upload')
+    //remote upload to server
+    remoteUpload(server) {
+      if (server === 'streamtape') {
+        this.remoteUploadStreamTape()
+      }
+
+      if (server === 'doodstream') {
+        this.remoteUploadDoodStream()
+      }
+    },
+
+    //check status remote upload
+    checkRemoteStatus(server, id) {
+      if (server === 'streamtape') {
+        this.checkRemoteStatusStreamtape(id)
+      }
+
+      if (server === 'doodstream') {
+        this.checkRemoteStatusDoodStream(id)
+      }
+    },
+
+    //streamtape
+    remoteUploadStreamTape() {
+      console.log('streamtape start upload')
       this.loader = 'loading'
       let login = '2d483508a0d5c3f3040f'
       let key = 'WbGlAZw92Dhbx6D'
       let url = this.url.replace('&', '%26')
       console.log('url', url)
       axios
-        .post(
-          `https://api.streamtape.com/remotedl/add?login=${login}&key=${key}&url=${url}`
-        )
+        .post(`/api2/remotedl/add?login=${login}&key=${key}&url=${url}`)
         .then((res) => {
-          console.log('sending...', res)
-          this.remoteId = res.data.result.id
-          this.checkRemoteStatus()
+          console.log('streamtape sending...', res)
+          this.checkRemoteStatus('streamtape', res.data.result.id)
 
           var interval = setInterval(() => {
-            this.checkRemoteStatus()
+            this.checkRemoteStatus('streamtape', res.data.result.id)
             if (this.remoteStatus === 'finished') {
               clearInterval(interval)
             } else if (this.remoteStatus === 'error') {
@@ -270,24 +307,59 @@ export default {
         })
     },
 
-    checkRemoteStatus() {
-      console.log('start check remote status')
+    checkRemoteStatusStreamtape(id) {
+      console.log('streamtape start check remote status')
       let login = '2d483508a0d5c3f3040f'
       let key = 'WbGlAZw92Dhbx6D'
-      let id = this.remoteId
 
       axios
-        .get(
-          `https://api.streamtape.com/remotedl/status?login=${login}&key=${key}&id=${id}`
-        )
+        .get(`/api2/remotedl/status?login=${login}&key=${key}&id=${id}`)
         .then((res) => {
-          console.log('checking...', res)
+          console.log('streamtape checking...', res)
           console.log(Object.values(res.data.result))
           var value = Object.values(res.data.result)
-          this.remoteStatus = value[0].status
+          this.remoteStatus = res.data.result.value[0].status
           this.remoteUrl = 'https://streamtape.com/e/' + value[0].linkid + '/'
           console.log(this.remoteStatus)
           console.log(this.remoteUrl)
+        })
+    },
+
+    // --- DOODSTREAM --- //
+    async remoteUploadDoodStream() {
+      let api_key = '51660e2fv6ze05uabp27g'
+      let upload_url = this.url.replace('&', '%26')
+
+      const res = await axios.get(
+        `/api3/upload/url?key=${api_key}&url=${upload_url}`
+      )
+      console.log(res)
+
+      this.remoteUrl = 'https://dood.la/d/' + res.data.result.filecode
+      console.log('doodstream remote url', this.remoteUrl)
+
+      console.log('doodstream upload status', res)
+
+      this.checkRemoteStatus('doodstream', res.data.result.filecode)
+
+      var interval = setInterval(() => {
+        this.checkRemoteStatus('doodstream', res.data.result.filecode)
+        if (this.remoteStatus === 'working') {
+          clearInterval(interval)
+        } 
+      }, 15000)
+
+    },
+
+    checkRemoteStatusDoodStream(id) {
+      console.log('doodstream start check remote status')
+      let api_key = '51660e2fv6ze05uabp27g'
+
+      axios
+        .get(`/api3/urlupload/status?key=${api_key}&file_code=${id}`)
+        .then((res) => {
+          console.log('doodstream checking...', res)
+          this.remoteStatus = res.data.result[0].status
         })
     },
 

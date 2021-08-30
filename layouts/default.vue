@@ -12,15 +12,15 @@
       </v-container>
     </v-main>
     
-    <the-footer />
+    <!-- <the-footer /> -->
   
   </v-app>
 </template>
 
 <script>
-import TheFooter from '~/components/footer/TheFooter.vue'
+// import TheFooter from '~/components/footer/TheFooter.vue'
 import TheHeader from '~/components/header/TheHeader.vue'
 export default {
-  components: { TheHeader, TheFooter },
+  components: { TheHeader,  },
 }
 </script>
