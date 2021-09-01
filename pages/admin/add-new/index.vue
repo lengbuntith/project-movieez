@@ -291,7 +291,7 @@ export default {
       let url = this.url.replace('&', '%26')
       console.log('url', url)
       axios
-        .post(`/api2/remotedl/add?login=${login}&key=${key}&url=${url}`)
+        .post(`/streamtape/remotedl/add?login=${login}&key=${key}&url=${url}`)
         .then((res) => {
           console.log('streamtape sending...', res)
           this.checkRemoteStatus('streamtape', res.data.result.id)
@@ -313,7 +313,7 @@ export default {
       let key = 'WbGlAZw92Dhbx6D'
 
       axios
-        .get(`/api2/remotedl/status?login=${login}&key=${key}&id=${id}`)
+        .get(`/streamtape/remotedl/status?login=${login}&key=${key}&id=${id}`)
         .then((res) => {
           console.log('streamtape checking...', res)
           console.log(Object.values(res.data.result))
@@ -331,7 +331,7 @@ export default {
       let upload_url = this.url.replace('&', '%26')
 
       const res = await axios.get(
-        `/api3/upload/url?key=${api_key}&url=${upload_url}`
+        `/dood/upload/url?key=${api_key}&url=${upload_url}`
       )
       console.log(res)
 
@@ -356,7 +356,7 @@ export default {
       let api_key = '51660e2fv6ze05uabp27g'
 
       axios
-        .get(`/api3/urlupload/status?key=${api_key}&file_code=${id}`)
+        .get(`/dood/urlupload/status?key=${api_key}&file_code=${id}`)
         .then((res) => {
           console.log('doodstream checking...', res)
           this.remoteStatus = res.data.result[0].status

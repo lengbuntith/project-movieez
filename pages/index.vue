@@ -1,30 +1,35 @@
 <template>
   <div>
-    <movie-list />
+    <movie-list :home_movies="home_movies" />
+    
   </div>
 </template>
 
 <script>
-import MovieList from '~/components/home/MovieList.vue'
+import MovieList from '~/components/home/MovieList.vue';
+import { mapMutations, mapState } from 'vuex'
+
 export default {
   components: { MovieList },
-  data() {
-    return {
-      latest_movies: [],
-    }
+
+   computed: {
+    ...mapState(['home_movies']),
   },
 
-  created() {
-    // this.getLatestMovies()
+
+  beforeMount() {
+    console.log('before mount')
+    this.getMovie()
   },
 
   methods: {
-    // getLatestMovies() {
-    //   this.$axios.get('/list_movies.json').then((res) => {
-    //     console.log(res)
-    //     this.latest_movies = res.data.data.movies
-    //   })
-    // },
+    ...mapMutations(['HOME_MOVIES']),
+
+    async getMovie() {
+      const res = await this.$supabase.from('movies').select('*')
+      console.log('get movie', res)
+      this.HOME_MOVIES(res.data)
+    },
   },
 }
 </script>

@@ -28,7 +28,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/supabase.client.js'
+    '@/plugins/supabase.client.js',
+    '@/plugins/vue-observe-visibility.js',
+    '@/plugins/vue-observe-visibility.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -61,9 +63,9 @@ export default {
   },
 
   proxy: {
-    '/api1/': { target: 'https://yts.mx/api/v2/', pathRewrite: {'^/api1/': ''} },
-    '/api2/': { target: 'https://api.streamtape.com/', pathRewrite: {'^/api2/': ''} },
-    '/api3/': { target: 'https://doodapi.com/api/', pathRewrite: {'^/api3/': ''} }
+    '/yts/': { target: 'https://yts.mx/api/v2/', pathRewrite: {'^/yts/': ''} },
+    '/streamtape/': { target: 'https://api.streamtape.com/', pathRewrite: {'^/streamtape/': ''} },
+    '/dood/': { target: 'https://doodapi.com/api/', pathRewrite: {'^/dood/': ''} }
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
