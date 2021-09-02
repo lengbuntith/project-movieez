@@ -1,22 +1,20 @@
 <template>
-  <div class="d-flex flex-wrap justify-space-around">
-    <div 
-    style="height: 300px; cursor: pointer" 
+  <div class="d-flex flex-wrap justify-space-around" lg="3" md="4" sm="6">
+    <div class="holywood-box"
+    style="cursor: pointer" 
     v-for="(movie, index) in home_movies" 
     :key="index"
     @click="()=> { 
       $router.push('/movie/'+ movie.id) }"
     >
-      <div style="height: 250px">
-        <img
-          width="100%"
-          height="100%"
-          style="object-fit: contain"
+      <div class="holywood-img">
+        <img 
+          width="250px"
           :src="movie.thumbnail"
         />
       </div>
-      <div style="height: 50px">
-        {{ movie.name }}
+      <div class="holywood-txt">
+        <strong>{{ movie.name }}</strong>
       </div>
     </div>
   </div>
@@ -35,4 +33,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .holywood-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
+    margin: 20px 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 200px;
+    background-color: #ffffff;
+  }
+  .holywood-img {
+    width: 100%;
+    height: 270px;
+  }
+  .holywood-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    color: #3a3a3a;
+    margin: 0px;
+  }
+  .holywood-txt {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+  }
+  .holywood-txt strong{
+    color: #979797;
+    margin: 0px;
+    text-align: center;
+    height: 20px;
+  }
 </style>
