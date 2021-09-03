@@ -1,33 +1,28 @@
 <template>
-  <div class="d-flex flex-wrap justify-space-around" lg="3" md="4" sm="6">
-    <!-- <base-movie-card
-      v-for="movie in home_movies"
-      :key="movie.id"
-      :movie="movie"
-    /> -->
-
-    <base-movie-cart-float-detail
-      v-for="movie in home_movies"
-      :key="movie.id"
-      :movie="movie"
-    />
+  <div
+    class="holywood-box"
+    style="cursor: pointer"
+    @click="()=>{
+      $router.push('/movie/' + movie.id)
+    }"
+  >
+    <div class="holywood-img">
+      <img width="250px" :src="movie.thumbnail" />
+    </div>
+    <div class="holywood-txt">
+      <strong>{{ movie.name }}</strong>
+    </div>
   </div>
 </template>
 
 <script>
-import BaseMovieCard from '../BaseMovieCard.vue'
-import BaseMovieCartFloatDetail from '../BaseMovieCartFloatDetail.vue'
-
 export default {
-  components: {
-    BaseMovieCard,
-    BaseMovieCartFloatDetail
-  },
+  components: {},
 
   props: {
-    home_movies: {
-      type: Array,
-      default: [],
+    movie: {
+      type: Object,
+      default: {},
     },
   },
 }

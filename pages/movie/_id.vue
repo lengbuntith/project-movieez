@@ -10,7 +10,6 @@
         allowfullscreen
         allowtransparency
         allow="autoplay"
-        
         scrolling="no"
         frameborder="0"
       ></iframe>
@@ -29,6 +28,20 @@
         >
       </v-col>
     </v-row>
+
+    <!-- video trailer -->
+    <v-card class="d-flex align-center justify-center" height="80vh">
+      <iframe
+        :src="movie.trailer"
+        width="100%"
+        height="100%"
+        allowfullscreen
+        allowtransparency
+        allow="autoplay"
+        scrolling="no"
+        frameborder="0"
+      ></iframe>
+    </v-card>
 
     <!-- relate movies -->
     <v-sheet

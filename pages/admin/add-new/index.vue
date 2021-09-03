@@ -193,6 +193,7 @@
 
 <script>
 import axios from 'axios'
+
 import ListMovies from '../../../components/admin/ListMovies.vue'
 import FloatDetailMovie from '../../../components/admin/FloatDetailMovie.vue'
 import { mapState } from 'vuex'
@@ -225,6 +226,7 @@ export default {
       rating: 0,
       files: [],
       torrent: '',
+      trailer: ''
     },
 
     url: '',
@@ -255,6 +257,7 @@ export default {
         thumbnail: movie.medium_cover_image,
         files: [],
         torrent: movie.torrents[0].url,
+        trailer: movie.yt_trailer_code
       }
 
       this.dialog = false
@@ -346,9 +349,8 @@ export default {
         this.checkRemoteStatus('doodstream', res.data.result.filecode)
         if (this.remoteStatus === 'working') {
           clearInterval(interval)
-        } 
+        }
       }, 15000)
-
     },
 
     checkRemoteStatusDoodStream(id) {
@@ -373,6 +375,7 @@ export default {
           thumbnail: this.movie.thumbnail,
           genres: this.movie.genres,
           synopsis: this.movie.description,
+          trailer: this.movie.trailer,
         },
       ])
       console.log('post movie', res)

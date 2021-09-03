@@ -1,7 +1,6 @@
 <template>
   <div>
     <movie-list :home_movies="home_movies" />
-    
   </div>
 </template>
 
