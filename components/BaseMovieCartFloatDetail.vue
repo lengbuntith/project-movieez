@@ -1,13 +1,11 @@
 <template>
-  <v-tooltip v-model="show" right>
+  <v-tooltip  right nudge-left="10px">
     <template v-slot:activator="{ on, attrs }">
-      <base-movie-card
-        @mouseover.native="show = true"
-        @mouseleave.native="show = false"
-        :movie="movie"
-        v-bind="attrs"
-        v-on="on"
-      />
+      <div v-bind="attrs" v-on="on">
+        <base-movie-card
+          :movie="movie"
+        />
+      </div>
     </template>
     <div style="width: 300px">
       {{ movie.name }} <br />
@@ -16,13 +14,16 @@
       <br />
       {{ movie.synopsis.slice(0, 320) }}...
     </div>
+
+    <watch-trailer />
   </v-tooltip>
 </template>
 
 <script>
 import BaseMovieCard from './BaseMovieCard.vue'
+import WatchTrailer from './WatchTrailer.vue'
 export default {
-  components: { BaseMovieCard },
+  components: { BaseMovieCard, WatchTrailer },
 
   props: {
     movie: {
@@ -43,6 +44,14 @@ export default {
       s = s.replace(/([A-Z])/g, ' $1').trim()
 
       return s
+    },
+  },
+
+  methods: {
+    hideFloat() {
+      setTimeout(() => {
+        this.show = false
+      }, 3000)
     },
   },
 }

@@ -1,7 +1,9 @@
 export const state = () => ({
     search_movies: [],
     select_movie: '',
-    home_movies: []
+    home_movies: [],
+    dialog_trailer: false,
+    select_trailer: ''
 })
 
 export const getters = {
@@ -21,6 +23,14 @@ export const mutations = {
 
     HOME_MOVIES(state, data){
         state.home_movies = data
+    },
+
+    SET_DIALOG_TRAILER(state, data){
+        state.dialog_trailer = data
+    },
+
+    SET_SELECT_TRAILER(state, data){
+        state.select_trailer = data
     }
 }
 

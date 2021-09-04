@@ -1,20 +1,21 @@
 <template>
   <div>
     <movie-list :home_movies="home_movies" />
+    <video-trailer />
   </div>
 </template>
 
 <script>
-import MovieList from '~/components/home/MovieList.vue';
+import MovieList from '~/components/home/MovieList.vue'
 import { mapMutations, mapState } from 'vuex'
+import VideoTrailer from '~/components/VideoTrailer.vue'
 
 export default {
-  components: { MovieList },
+  components: { MovieList, VideoTrailer },
 
-   computed: {
+  computed: {
     ...mapState(['home_movies']),
   },
-
 
   beforeMount() {
     console.log('before mount')

@@ -6,22 +6,30 @@
       :movie="movie"
     /> -->
 
-    <base-movie-cart-float-detail
+    <!-- <base-movie-cart-float-detail
       v-for="movie in home_movies"
       :key="movie.id"
       :movie="movie"
-    />
+    /> -->
+
+    <card-float 
+    v-for="movie in home_movies" 
+    :key="movie.id" 
+    :movie="movie" />
+  
   </div>
 </template>
 
 <script>
 import BaseMovieCard from '../BaseMovieCard.vue'
 import BaseMovieCartFloatDetail from '../BaseMovieCartFloatDetail.vue'
+import CardFloat from '../CardFloat.vue'
 
 export default {
   components: {
     BaseMovieCard,
-    BaseMovieCartFloatDetail
+    BaseMovieCartFloatDetail,
+    CardFloat,
   },
 
   props: {
