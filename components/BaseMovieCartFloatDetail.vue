@@ -39,17 +39,10 @@ export default {
 
   computed: {
     genre() {
-      var inputString = 'AcvcvDadfsdf'
-      var newString = []
-      for (var i = 0; i < inputString.length; i++) {
-        if (inputString[i].match(/[A-Z]/) != null) {
-          newString[i] = i > 0 ? ' ' + inputString[i] : inputString[i] 
-        } else {
-          newString[i] = inputString[i]
-        }
-      }
+      var s = this.movie.genres
+      s = s.replace(/([A-Z])/g, ' $1').trim()
 
-      return newString.toString()
+      return s
     },
   },
 }
