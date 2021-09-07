@@ -37,12 +37,12 @@ export default {
   margin: 20px 10px;
   border-radius: 10px;
   overflow: hidden;
-  width: 200px;
+  width: 150px;
   background-color: #ffffff;
 }
 .holywood-img {
   width: 100%;
-  height: 270px;
+  height: 180px;
 }
 .holywood-img img {
   width: 100%;

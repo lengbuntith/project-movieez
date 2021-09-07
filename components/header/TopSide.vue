@@ -1,6 +1,10 @@
 <template>
   <v-app-bar app>
-    <div class="ml-7">
+    <v-app-bar-nav-icon
+      @click="$nuxt.$emit('toggle-left-side')"
+    ></v-app-bar-nav-icon>
+
+    <div class="flex-grow-1 mr-4">
       <v-text-field
         dense
         rounded
@@ -13,15 +17,12 @@
       ></v-text-field>
     </div>
 
-    <v-spacer></v-spacer>
-
     <div>
       <v-switch
         v-model="switch1"
         hide-details
         inset
         @change="toggleDarkMode"
-        :label="`Switch 1: ${switch1.toString()}`"
       ></v-switch>
     </div>
   </v-app-bar>

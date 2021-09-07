@@ -66,6 +66,16 @@ export default {
     }
   },
 
+  created () {
+    //when open movie page --> close "left side"
+    this.$nuxt.$emit('close-left-side')
+  },
+
+  beforeDestroy () {
+    //when before leave movie page --> show "left side"
+    this.$nuxt.$emit('open-left-side')
+  },
+
   mounted() {
     this.getMovie()
   },

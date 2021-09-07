@@ -1,34 +1,16 @@
 <template>
-  <div class="d-flex flex-wrap justify-space-around" lg="3" md="4" sm="6">
-    <!-- <base-movie-card
-      v-for="movie in home_movies"
-      :key="movie.id"
-      :movie="movie"
-    /> -->
-
-    <!-- <base-movie-cart-float-detail
-      v-for="movie in home_movies"
-      :key="movie.id"
-      :movie="movie"
-    /> -->
-
-    <card-float 
-    v-for="movie in home_movies" 
-    :key="movie.id" 
-    :movie="movie" />
-  
+  <div class="d-flex flex-wrap justify-space-around">
+    <base-movie-slide  :movies="home_movies"/>
   </div>
 </template>
 
 <script>
 import BaseMovieCard from '../BaseMovieCard.vue'
-import BaseMovieCartFloatDetail from '../BaseMovieCartFloatDetail.vue'
 import CardFloat from '../CardFloat.vue'
 
 export default {
   components: {
     BaseMovieCard,
-    BaseMovieCartFloatDetail,
     CardFloat,
   },
 

@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer class="" dark permanent app>
+  <v-navigation-drawer v-model="drawer" dark app>
     <!-- block logo -->
     <div class="d-flex justify-start ml-5 align-center py-2 white--text">
       <div class="mr-2">
@@ -31,16 +31,56 @@
 export default {
   data() {
     return {
+      drawer: null,
       items: [
         { title: 'Home', icon: 'mdi-home', link: '/' },
         { title: 'Genres', icon: 'mdi-view-dashboard', link: '/genre' },
         { title: 'Favorite', icon: 'mdi-heart', link: '/favorite' },
         { title: 'Account', icon: 'mdi-account', link: '/account' },
-
       ],
     }
   },
 
+  computed: {
+    breakpoint() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs':
+          return false
+        case 'sm':
+          return false
+        case 'md':
+          return true
+        case 'lg':
+          return true
+        case 'xl':
+          return true
+      }
+    },
+  },
 
+  watch: {
+    breakpoint(newValue, oldValue) {
+      this.drawer = newValue
+    }
+  },
+
+  created() {
+    this.$nuxt.$on('close-left-side', () => {
+      this.drawer = false
+    })
+
+    this.$nuxt.$on('open-left-side', () => {
+      this.drawer = true
+    })
+
+    this.$nuxt.$on('toggle-left-side', () => {
+      this.drawer = !this.drawer
+    })
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('close-left-side')
+    this.$nuxt.$off('open-left-side')
+    this.$nuxt.$off('toggle-left-side')
+  },
 }
 </script>
