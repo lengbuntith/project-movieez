@@ -14,7 +14,7 @@
         class="white--text pa-2"
       >
         {{ movie.name }} <br />
-        <base-movie-cart-rating :value="movie.imdb" /> <br />
+        <base-movie-card-rating :value="movie.imdb" /> <br />
         {{ genre }} <br />
         <br />
         {{ movie.synopsis.slice(0, 160) }}... <br />
@@ -26,7 +26,7 @@
 
 <script>
 import BaseMovieCard from './BaseMovieCard.vue'
-import BaseMovieCartRating from './BaseMovieCartRating.vue'
+import BaseMovieCardRating from './BaseMovieCardRating.vue'
 export default {
   props: {
     movie: {
@@ -37,7 +37,7 @@ export default {
 
   components: {
     BaseMovieCard,
-    BaseMovieCartRating,
+    BaseMovieCardRating,
   },
 
   data: () => ({

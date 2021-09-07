@@ -3,7 +3,7 @@ export const state = () => ({
     select_movie: '',
     home_movies: [],
     dialog_trailer: false,
-    select_trailer: ''
+    select_trailer: '',
 })
 
 export const getters = {
@@ -31,7 +31,7 @@ export const mutations = {
 
     SET_SELECT_TRAILER(state, data){
         state.select_trailer = data
-    }
+    },
 }
 
 

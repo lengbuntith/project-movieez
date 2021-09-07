@@ -12,15 +12,18 @@
       </v-container>
     </v-main>
     
+    <bottom-side />
+
     <!-- <the-footer /> -->
   
   </v-app>
 </template>
 
 <script>
+import BottomSide from '~/components/header/BottomSide.vue'
 // import TheFooter from '~/components/footer/TheFooter.vue'
 import TheHeader from '~/components/header/TheHeader.vue'
 export default {
-  components: { TheHeader,  },
+  components: { TheHeader, BottomSide,  },
 }
 </script>
