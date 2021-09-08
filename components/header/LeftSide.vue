@@ -13,13 +13,45 @@
 
     <!-- block menu -->
     <v-list>
-      <v-list-item v-for="item in items" :key="item.title" link :to="item.link">
+      <v-list-item link>
         <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
+          <v-icon>{{ item[0].icon }}</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title>{{ item[0].title }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-list-item link>
+        <v-list-item-icon>
+          <v-icon>{{ item[1].icon }}</v-icon>
+        </v-list-item-icon>
+
+        <genre-hover />
+
+        <!-- <v-list-item-content>
+          <v-list-item-title>{{ item[1].title }}</v-list-item-title>
+        </v-list-item-content> -->
+      </v-list-item>
+
+      <v-list-item link>
+        <v-list-item-icon>
+          <v-icon>{{ item[2].icon }}</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>{{ item[2].title }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-list-item link>
+        <v-list-item-icon>
+          <v-icon>{{ item[3].icon }}</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>{{ item[3].title }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -28,11 +60,13 @@
 </template>
 
 <script>
+import GenreHover from './GenreHover.vue'
 export default {
+  components: { GenreHover },
   data() {
     return {
       drawer: null,
-      items: [
+      item: [
         { title: 'Home', icon: 'mdi-home', link: '/' },
         { title: 'Genres', icon: 'mdi-view-dashboard', link: '/genre' },
         { title: 'Favorite', icon: 'mdi-heart', link: '/favorite' },
@@ -59,12 +93,15 @@ export default {
   },
 
   watch: {
+    //after computed value 'breakpoint' then change value 'drawer'
     breakpoint(newValue, oldValue) {
       this.drawer = newValue
-    }
+    },
   },
 
   created() {
+    //if other component call this event --> close left side
+    //to call this event :  this.$nuxt('event-name')
     this.$nuxt.$on('close-left-side', () => {
       this.drawer = false
     })
@@ -77,6 +114,7 @@ export default {
       this.drawer = !this.drawer
     })
   },
+
   beforeDestroy() {
     this.$nuxt.$off('close-left-side')
     this.$nuxt.$off('open-left-side')

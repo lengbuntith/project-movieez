@@ -3,7 +3,7 @@
     <v-dialog persistent v-model="dialog_trailer" width="630">
       <v-card v-if="dialog_trailer" class="pa-4">
         <iframe
-          src="https://www.youtube.com/embed/gRbG2tjHYCA?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3"
+          :src="`https://www.youtube.com/embed/${select_trailer.trailer}?rel=0&wmode=transparent&border=0&autoplay=1&iv_load_policy=3`"
           frameborder="0"
           width="600"
           height="400"

@@ -1,5 +1,6 @@
 <template>
   <v-app-bar app>
+    
     <v-app-bar-nav-icon
       @click="$nuxt.$emit('toggle-left-side')"
     ></v-app-bar-nav-icon>

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-menu v-model="show" open-on-hover offset-x>
+    <v-menu v-model="show" open-on-hover offset-y>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
           <base-movie-card :movie="movie" />

@@ -1,8 +1,8 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
     <swiper-slide v-for="movie in movies" :key="movie.id">
-      <!-- <card-float :movie="movie" /> -->
-      <base-movie-card :movie="movie" />
+      <card-float :movie="movie" />
+      <!-- <base-movie-card :movie="movie" /> -->
     </swiper-slide>
 
     <svg
@@ -12,7 +12,7 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      class="swiper-button-prev"
+      class="swiper-button-prev d-none d-md-block"
       slot="button-prev"
     >
       <g
@@ -40,7 +40,7 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      class="swiper-button-next"
+      class="swiper-button-next d-none d-md-block"
       slot="button-next"
     >
       <g>
@@ -57,14 +57,6 @@
         ></path>
       </g>
     </svg>
-    <!-- <div
-      class="swiper-button-prev"
-      slot="button-prev"
-    ></div>
-    <div
-      class="swiper-button-next"
-      slot="button-next"
-    ></div> -->
   </swiper>
 </template>
 
@@ -88,23 +80,28 @@ export default {
       swiperOption: {
         slidesPerView: 2,
         spaceBetween: 30,
+        slidesPerGroup: 2,
 
         breakpoints: {
           1024: {
             slidesPerView: 6,
             spaceBetween: 40,
+            slidesPerGroup: 6,
           },
           768: {
             slidesPerView: 3,
             spaceBetween: 30,
+            slidesPerGroup: 3,
           },
           640: {
             slidesPerView: 3,
             spaceBetween: 20,
+            slidesPerGroup: 3,
           },
           320: {
             slidesPerView: 2,
             spaceBetween: 10,
+            slidesPerGroup: 2,
           },
         },
 
