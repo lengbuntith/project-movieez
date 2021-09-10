@@ -82,9 +82,15 @@ export default {
 
   methods: {
     async getMovie() {
+      
       let id = this.$route.params.id
+      console.log('movie id = ', id)
+
+
+
       const res = await this.$supabase.from('movies').select('*').eq('id', id)
-      console.log('get movie', res)
+     
+     console.log('get movie', res.data[0])
       this.movie = res.data[0]
     },
   },
