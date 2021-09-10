@@ -29,14 +29,5 @@ export default {
 </script>
 
 <style>
- .nav-link {
-    text-decoration-line: none;
-  }
-  .nav-link :hover {
-    color: black;
-    background-color: rgb(172, 171, 170);
-  }
-  .movie-type {
-    padding: 0px 10px 0px 10px;
-  }
+ 
 </style>
