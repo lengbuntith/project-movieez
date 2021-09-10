@@ -1,6 +1,16 @@
 <template>
-  <div class="d-flex flex-wrap justify-space-around">
-    <base-movie-slide  :movies="home_movies"/>
+  <div>
+    <div>
+      <router-link to="/allmovie/hollywood" class="nav-link">
+        <button class="movie-type">
+          <strong>TOP HOLLYWOOD</strong>
+          <v-icon>mdi-chevron-right</v-icon>
+        </button>
+      </router-link>
+    </div>
+    <div class="d-flex flex-wrap justify-space-around">
+      <base-movie-slide  :movies="home_movies"/>
+    </div>
   </div>
 </template>
 
