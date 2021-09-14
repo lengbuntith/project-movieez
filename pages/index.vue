@@ -21,13 +21,12 @@ export default {
     console.log('before mount')
     this.getMovie()
   },
-
   methods: {
     ...mapMutations(['HOME_MOVIES']),
 
     async getMovie() {
       const res = await this.$supabase.from('movies').select('*')
-      console.log('get movie', res)
+      console.log( 'get movie', res)
       this.HOME_MOVIES(res.data)
     },
   },
