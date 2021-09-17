@@ -4,7 +4,7 @@
 
     {{movies}}
 
-    <!-- <v-row>
+  <!-- <v-row>
       <v-col v-for="(movie, index) in movies" :key="index">
         <base-movie-card :movie="movie" />
       </v-col>
@@ -22,26 +22,26 @@ export default {
   data() {
     return {
     //   movies: [
-    //     {
-    //       genres: 'Adventure',
-    //       id: 1,
-    //       imdb: 7.3,
-    //       name: 'Black Panther',
-    //       synopsis: "After the events of Captain America: Civil War, Prince T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new king. However, T'Challa soon finds that he is challenged for the throne from factions within his own country. When two foes conspire to destroy Wakanda, the hero known as Black Panther must team up with C.I.A. agent Everett K. Ross and members of the Dora Milaje, Wakandan special forces, to prevent Wakanda from being dragged into a world war. —Editor",
-    //       thumbnail: 'https://img.yts.mx/assets/images/movies/black_panther_2018/medium-cover.jpg',
-    //       trailer: null,
-    //       video: null,
-    //     },
+        // {
+        //   genres: 'Adventure',
+        //   id: 1,
+        //   imdb: 7.3,
+        //   name: 'Black Panther',
+        //   synopsis: "After the events of Captain America: Civil War, Prince T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new king. However, T'Challa soon finds that he is challenged for the throne from factions within his own country. When two foes conspire to destroy Wakanda, the hero known as Black Panther must team up with C.I.A. agent Everett K. Ross and members of the Dora Milaje, Wakandan special forces, to prevent Wakanda from being dragged into a world war. —Editor",
+        //   thumbnail: 'https://img.yts.mx/assets/images/movies/black_panther_2018/medium-cover.jpg',
+        //   trailer: null,
+        //   video: null,
+        // },
 
     //     {
-    //       genres: 'Adventure',
-    //       id: 2,
-    //       imdb: 7.3,
-    //       name: 'Black Panther',
-    //       synopsis: "After the events of Captain America: Civil War, Prince T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new king. However, T'Challa soon finds that he is challenged for the throne from factions within his own country. When two foes conspire to destroy Wakanda, the hero known as Black Panther must team up with C.I.A. agent Everett K. Ross and members of the Dora Milaje, Wakandan special forces, to prevent Wakanda from being dragged into a world war. —Editor",
-    //       thumbnail: 'https://img.yts.mx/assets/images/movies/black_panther_2018/medium-cover.jpg',
-    //       trailer: null,
-    //       video: null,
+          // genres: 'Adventure',
+          // id: 2,
+          // imdb: 7.3,
+          // name: 'Black Panther',
+          // synopsis: "After the events of Captain America: Civil War, Prince T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new king. However, T'Challa soon finds that he is challenged for the throne from factions within his own country. When two foes conspire to destroy Wakanda, the hero known as Black Panther must team up with C.I.A. agent Everett K. Ross and members of the Dora Milaje, Wakandan special forces, to prevent Wakanda from being dragged into a world war. —Editor",
+          // thumbnail: 'https://img.yts.mx/assets/images/movies/black_panther_2018/medium-cover.jpg',
+          // trailer: null,
+          // video: null,
     //     },
     //   ],
 
