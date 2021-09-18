@@ -6,6 +6,9 @@
       <menu-navigation />
 
       <v-spacer />
+
+      <select-language />
+
       <!-- search box for desktop -->
       <div class="mr-4 d-none d-sm-block" style="max-width: 300px">
         <v-text-field
@@ -41,11 +44,13 @@
 
 <script>
 import MenuNavigation from './MenuNavigation.vue'
+import SelectLanguage from './SelectLanguage.vue'
 import TheLogo from './TheLogo.vue'
 export default {
   components: {
     TheLogo,
     MenuNavigation,
+    SelectLanguage,
   },
 
   data() {
