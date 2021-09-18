@@ -1,6 +1,7 @@
 <template>
   <div v-if="cartoons.length > 0">
-    <carousel-slide />
+    <!-- <carousel-slide /> -->
+    <carousel-swiper />
 
     <div>
       <router-link to="/allmovie/hollywood" class="nav-link">
@@ -42,9 +43,10 @@ import MovieList from '~/components/home/MovieList.vue'
 import { mapMutations, mapState } from 'vuex'
 import VideoTrailer from '~/components/VideoTrailer.vue'
 import CarouselSlide from '~/components/CarouselSlide.vue'
+import CarouselSwiper from '~/components/CarouselSwiper.vue'
 
 export default {
-  components: { MovieList, VideoTrailer, CarouselSlide },
+  components: { MovieList, VideoTrailer, CarouselSlide, CarouselSwiper },
 
   computed: {
     ...mapState(['home_movies']),
