@@ -1,6 +1,6 @@
 <template>
   <div class="d-none d-md-flex ml-4">
-    <v-btn to="/" text> Home </v-btn>
+    <v-btn plain to="/" text> Home </v-btn>
     <genre-hover :genres="genres" />
   </div>
 </template>
