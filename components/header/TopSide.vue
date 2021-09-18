@@ -3,6 +3,8 @@
     <v-container class="py-0 px-0 fill-height">
       <the-logo />
 
+      <menu-navigation />
+
       <v-spacer />
       <!-- search box for desktop -->
       <div class="mr-4 d-none d-sm-block" style="max-width: 300px">
@@ -38,10 +40,12 @@
 </template>
 
 <script>
+import MenuNavigation from './MenuNavigation.vue'
 import TheLogo from './TheLogo.vue'
 export default {
   components: {
     TheLogo,
+    MenuNavigation,
   },
 
   data() {
