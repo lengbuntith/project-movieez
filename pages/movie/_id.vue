@@ -1,60 +1,64 @@
 <template>
   <v-container>
     <!-- video player -->
-    <v-card class="d-flex align-center justify-center" height="80vh">
+    <v-card outlined class="box">
       <iframe
+        class="responsive-iframe"
         :src="movie.video"
         name="subs:https://bicfdwigabzwxeymwsnv.supabase.in/storage/v1/object/public/database/subtitles/khmer.srt"
-        width="100%"
-        height="100%"
         allowfullscreen
         allowtransparency
-        allow="autoplay"
         scrolling="no"
         frameborder="0"
       ></iframe>
     </v-card>
 
-    <!-- movie description -->
-    <v-row class="mt-4">
-      <v-col cols="2">
-        <v-sheet class="d-flex align-center justify-center" height="200"
-          >movie logo</v-sheet
-        >
-      </v-col>
-      <v-col>
-        <v-sheet class="d-flex align-center justify-center" height="200"
-          >movie information</v-sheet
-        >
-      </v-col>
-    </v-row>
+    <!-- movies des -->
+    <v-card outlined height="265" class="d-flex mt-12 pa-5">
+      <!-- left -->
+      <div class="mr-4">
+        <v-img width="150" :src="movie.thumbnail"></v-img>
+      </div>
+      <!-- right -->
+      <div style="height: 220px; overflow: hidden">
+        <div>
+          <span>{{ movie.name }}</span>
+        </div>
+        <div class="d-flex align-center">
+          <v-rating
+            readonly
+            v-model="movie.imdb"
+            background-color=""
+            color="orange"
+            dense
+            class="ml-n1"
+            small
+            half-increments
+          ></v-rating>
+          <span> {{ movie.imdb }} </span>
+        </div>
+
+        <div class="mt-2">
+          <span>{{ movie.synopsis }}</span>
+        </div>
+      </div>
+    </v-card>
+
+    <!-- end movies des -->
 
     <!-- video trailer -->
-    <v-card class="d-flex align-center justify-center" height="80vh">
-      <iframe
-        :src="movie.trailer"
-        width="100%"
-        height="100%"
-        allowfullscreen
-        allowtransparency
-        allow="autoplay"
-        scrolling="no"
-        frameborder="0"
-      ></iframe>
+    <div class="mt-10 mb-4 text-left font-weight-bold">Watch trailer</div>
+    <v-card class="d-flex justify-center align-center justify-center">
+      <div class="box">
+        <iframe
+          allowfullscreen
+          allowtransparency
+          frameborder="0"
+          class="responsive-iframe"
+          :src="`https://youtube.com/embed/${movie.trailer}`"
+        ></iframe>
+      </div>
     </v-card>
-
-    <!-- relate movies -->
-    <v-sheet
-      class="mt-10 mb-5 d-flex justify-center align-center"
-      width="174"
-      height="50"
-      >relate movies</v-sheet
-    >
-    <v-row>
-      <v-col v-for="i in 6" :key="i">
-        <v-sheet height="150"></v-sheet>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
@@ -66,31 +70,16 @@ export default {
     }
   },
 
-  created () {
-    //when open movie page --> close "left side"
-    this.$nuxt.$emit('close-left-side')
-  },
-
-  beforeDestroy () {
-    //when before leave movie page --> show "left side"
-    this.$nuxt.$emit('open-left-side')
-  },
-
-  mounted() {
-    this.getMovie()
+  async mounted() {
+    await this.getMovie()
   },
 
   methods: {
     async getMovie() {
-      
       let id = this.$route.params.id
       console.log('movie id = ', id)
-
-
-
       const res = await this.$supabase.from('movies').select('*').eq('id', id)
-     
-     console.log('get movie', res.data[0])
+      console.log('get movie', res.data[0])
       this.movie = res.data[0]
     },
   },
@@ -98,12 +87,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-</style>
+.box {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
 
-genre_id: (...)
-id: (...)
-imdb: (...)
-name: (...)
-synopsis: (...)
-thumbnail: (...)
-video: (...)
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
