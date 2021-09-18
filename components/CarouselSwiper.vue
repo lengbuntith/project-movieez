@@ -6,6 +6,7 @@
         gradient="to left bottom, rgba(0,0,0,.33), rgba(0,0,0,.33)"
         class="align-end"
         max-height="420px"
+        min-height="220px"
         :src="s.image_url"
       >
         <div
@@ -69,6 +70,7 @@ export default {
 <style lang="scss" scoped>
 .swiper {
   max-height: 420px;
+  min-height: 220px;
 
   .swiper-slide {
     background-position: center;
