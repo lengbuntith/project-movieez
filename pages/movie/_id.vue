@@ -22,7 +22,7 @@
       <!-- right -->
       <div style="height: 220px; overflow: hidden">
         <div>
-          <span>{{ movie.name }}</span>
+          <span  class="notranslate">{{ movie.name }}</span>
         </div>
         <div class="d-flex align-center">
           <v-rating

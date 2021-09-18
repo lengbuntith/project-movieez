@@ -2,7 +2,9 @@
   <div class="text-center">
     <v-menu open-on-hover bottom offset-y>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn plain text v-bind="attrs" v-on="on"> Genres </v-btn>
+        <v-btn class="notranslate" plain text v-bind="attrs" v-on="on">
+          Genres
+        </v-btn>
       </template>
 
       <v-card max-width="500" outlined class="menu pa-5">

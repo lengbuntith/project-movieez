@@ -21,6 +21,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {src: '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'}
     ]
   },
 
@@ -32,7 +35,8 @@ export default {
   plugins: [
     '@/plugins/supabase.client.js',
     '@/plugins/vue-content-placeholders.js',
-    '@/plugins/vue-observe-visibility.js'
+    '@/plugins/vue-observe-visibility.js',
+    '@/plugins/vue-country-flag.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

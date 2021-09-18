@@ -13,7 +13,7 @@
         color="rgb(0, 0, 0, 01)"
         class="white--text pa-2"
       >
-        {{ movie.name }} <br />
+        <span  class="notranslate">{{ movie.name }}</span>  <br />
         <base-movie-card-rating :value="movie.imdb" /> <br />
         {{ genre }} <br />
         <br />

@@ -10,7 +10,7 @@
       <img width="250px" :src="movie.thumbnail" />
     </div>
     <div class="holywood-txt">
-      <strong>{{ movie.name }}</strong>
+      <strong  class="notranslate">{{ movie.name }}</strong>
     </div>
   </div>
 </template>

@@ -4,6 +4,7 @@ export const state = () => ({
     home_movies: [],
     dialog_trailer: false,
     select_trailer: '',
+    genres: ''
 })
 
 export const getters = {
@@ -32,6 +33,10 @@ export const mutations = {
     SET_SELECT_TRAILER(state, data){
         state.select_trailer = data
     },
+
+    SET_GENRES(state, data){
+        state.genres = data
+    }
 }
 
 
@@ -42,5 +47,11 @@ export const actions = {
             console.log("🚀 ~ file: index.js ~ line 19 ~ searchMovies ~ res", res)
             commit("SEARCH_MOVIES", res.data.data.movies)
         })  
-    }
+    },
+
+    async getGenres(context) {
+        const res = await this.$supabase.from('genres').select('*')
+        console.log('get genres', res)
+        context.commit('SET_GENRES', res.data)
+    },
 }
