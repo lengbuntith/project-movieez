@@ -1,7 +1,7 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
-    <swiper-slide v-for="movie in movies" :key="movie.id">
-      <card-float :movie="movie" />
+    <swiper-slide v-for="(movie, index) in movies" :key="movie.id">
+      <card-float :movie="movie" :indexSlide="index" />
       <!-- <base-movie-card :movie="movie" /> -->
     </swiper-slide>
 

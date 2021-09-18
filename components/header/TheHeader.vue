@@ -1,7 +1,7 @@
 <template>
   <div id="navbar">
 
-    <LeftSide />
+    <!-- <LeftSide /> -->
     <TopSide />
   
   </div>

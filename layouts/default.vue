@@ -1,21 +1,14 @@
 <template>
-<!-- hello world -->
-<!-- hello world1 -->
-<!-- hello world2 -->
-<!-- hello world3 -->
-  <v-app id="inspire">
+  <v-app>
     <the-header />
 
-    <v-main class="grey lighten-2">
-      <v-container>
+    <v-main>
+      <v-container id="wrapper">
         <nuxt />
       </v-container>
     </v-main>
-    
-    <bottom-side />
 
-    <!-- <the-footer /> -->
-  
+    <bottom-side />
   </v-app>
 </template>
 
@@ -24,6 +17,12 @@ import BottomSide from '~/components/header/BottomSide.vue'
 // import TheFooter from '~/components/footer/TheFooter.vue'
 import TheHeader from '~/components/header/TheHeader.vue'
 export default {
-  components: { TheHeader, BottomSide,  },
+  components: { TheHeader, BottomSide },
 }
 </script>
+
+<style lang="scss" scoped>
+#wrapper {
+  margin-bottom: 50px;
+}
+</style>

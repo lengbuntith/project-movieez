@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-menu v-model="show" open-on-hover offset-y>
+    <v-menu v-model="show" open-on-hover :left="true"  offset-x>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
           <base-movie-card :movie="movie" />
@@ -18,7 +18,9 @@
         {{ genre }} <br />
         <br />
         {{ movie.synopsis.slice(0, 160) }}... <br />
-        <v-btn @click="openDialogTrailer" small elevation="" color="">watch trailer</v-btn>
+        <v-btn @click="openDialogTrailer" small elevation="" color=""
+          >watch trailer</v-btn
+        >
       </v-card>
     </v-menu>
   </div>
@@ -33,6 +35,10 @@ export default {
       type: Object,
       default: {},
     },
+
+    indexSlide :{
+      type: Number
+    }
   },
 
   components: {
@@ -48,17 +54,31 @@ export default {
     genre() {
       var s = this.movie.genres
       s = s.replace(/([A-Z])/g, ' $1').trim()
-
       return s
+    },
+
+    cardFloatPosition() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs':
+          return 220
+        case 'sm':
+          return 400
+        case 'md':
+          return 500
+        case 'lg':
+          return 'left'
+        case 'xl':
+          return 800
+      }
     },
   },
 
   methods: {
-      openDialogTrailer() {
-        this.show = false;
-        this.$store.commit('SET_DIALOG_TRAILER', true);
-        this.$store.commit('SET_SELECT_TRAILER', this.movie)
-      }
+    openDialogTrailer() {
+      this.show = false
+      this.$store.commit('SET_DIALOG_TRAILER', true)
+      this.$store.commit('SET_SELECT_TRAILER', this.movie)
+    },
   },
 }
 </script>
