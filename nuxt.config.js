@@ -33,7 +33,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/supabase.client.js',
+    '@/plugins/api.js',
+    '@/plugins/supabase.js',
     '@/plugins/vue-content-placeholders.js',
     '@/plugins/vue-observe-visibility.js',
     '@/plugins/vue-country-flag.js'

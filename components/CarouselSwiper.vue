@@ -19,9 +19,7 @@
         >
           <h1 style="font-weight: 400">{{ s.title }}</h1>
           <span class="font-weight-thin"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-            laborum magnam commodi enim molestiae! Eius doloremque distinctio
-            labore dolorem iure?</span
+            >{{s.subtitle}}</span
           >
         </div>
       </v-img>
@@ -59,10 +57,16 @@ export default {
     }
   },
 
-  async mounted() {
-    const res = await this.$supabase.from('slides').select('*')
-    console.log('slides', res)
-    this.slides = res.data
+  created() {
+    //get slides from backend
+    this.getSlides()
+  },
+
+  methods: {
+    async getSlides() {
+      const res = await this.$supabase.from('slides').select('*')
+      this.slides = res.data
+    },
   },
 }
 </script>

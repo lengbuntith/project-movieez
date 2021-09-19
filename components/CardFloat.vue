@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-menu v-model="show" open-on-hover :left="true"  offset-x>
+    <v-menu v-model="show" open-on-hover :left="index != 0" :right="index == 0"  offset-x>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
           <base-movie-card :movie="movie" />
@@ -36,8 +36,8 @@ export default {
       default: {},
     },
 
-    indexSlide :{
-      type: Number
+    index: {
+      type: String | Number
     }
   },
 
@@ -55,21 +55,6 @@ export default {
       var s = this.movie.genres
       s = s.replace(/([A-Z])/g, ' $1').trim()
       return s
-    },
-
-    cardFloatPosition() {
-      switch (this.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 220
-        case 'sm':
-          return 400
-        case 'md':
-          return 500
-        case 'lg':
-          return 'left'
-        case 'xl':
-          return 800
-      }
     },
   },
 

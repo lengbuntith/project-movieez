@@ -1,8 +1,8 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
     <swiper-slide v-for="(movie, index) in movies" :key="movie.id">
-      <card-float :movie="movie" :indexSlide="index" />
-      <!-- <base-movie-card :movie="movie" /> -->
+      <card-float v-if="showFloat" :movie="movie" :index="index" />
+      <base-movie-card v-else :movie="movie" />
     </swiper-slide>
 
     <svg
@@ -61,14 +61,24 @@
 </template>
 
 <script>
-import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
 import CardFloat from './CardFloat.vue'
 import BaseMovieCard from './BaseMovieCard.vue'
 
 export default {
-  props: ['movies', 'cat_id'],
+  props: {
+    categoryName: {
+      type: String,
+      default: '',
+    },
+
+    showFloat: {
+      type: Boolean,
+      default: true,
+    },
+  },
   components: {
     Swiper,
     SwiperSlide,
@@ -110,47 +120,29 @@ export default {
           prevEl: '.swiper-button-prev',
         },
       },
+
+      movies: [],
     }
   },
 
+  created() {
+    this.getMoviesByCategory()
+  },
+
   methods: {
-    // showArrow() {
-    //   if (this.cat_id) {
-    //     let id = this.cat_id
-    //     document.getElementById(id + '-p').style.display = 'block'
-    //     document.getElementById(id + '-n').style.display = 'block'
-    //   }
-    // },
-    // hideArrow() {
-    //   if (this.cat_id) {
-    //     let id = this.cat_id
-    //     document.getElementById(id + '-p').style.display = 'none'
-    //     document.getElementById(id + '-n').style.display = 'none'
-    //   }
-    // },
+    async getMoviesByCategory() {
+      const res = await this.$supabase
+        .from('movies')
+        .select('*')
+        .ilike('genres', `%${this.categoryName}%`)
+
+      this.movies = res.data
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-// @media (max-width: 1014px) {
-//   .swiper-button-next,
-//   .swiper-button-prev {
-//     display: none;
-//   }
-// }
-
-// .swiper-button-next,
-// .swiper-button-prev {
-//   display: none;
-// }
-
-// .swiper-button-next::after,
-// .swiper-button-prev::after {
-//   font-size: 40px !important;
-//   color: #d91c5c;
-// }
-
 $ease: cubic-bezier(0.2, 1, 0.3, 1);
 
 svg {

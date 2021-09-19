@@ -70,8 +70,8 @@ export default {
     }
   },
 
-  async mounted() {
-    await this.getMovie()
+  created() {
+    this.getMovie()
   },
 
   methods: {

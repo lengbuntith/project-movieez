@@ -1,6 +1,5 @@
 <template>
-  <div v-if="cartoons.length > 0">
-    <!-- <carousel-slide /> -->
+  <div>
     <carousel-swiper />
 
     <div>
@@ -11,8 +10,7 @@
         </button>
       </router-link>
     </div>
-    <movie-list :home_movies="home_movies" />
-    <video-trailer />
+    <base-movie-slide />
 
     <div>
       <router-link to="/allmovie/korean" class="nav-link">
@@ -22,8 +20,7 @@
         </button>
       </router-link>
     </div>
-    <movie-list title_movie="KOREAN" :home_movies="popcorns" />
-    <video-trailer />
+    <base-movie-slide/>
 
     <div>
       <router-link to="/allmovie/cartoon" class="nav-link">
@@ -33,57 +30,20 @@
         </button>
       </router-link>
     </div>
-    <movie-list title_movie="KOREAN" :home_movies="cartoons" />
+    <base-movie-slide categoryName="Animation"/>
     <video-trailer />
+
   </div>
 </template>
 
 <script>
-import MovieList from '~/components/home/MovieList.vue'
-import { mapMutations, mapState } from 'vuex'
-import VideoTrailer from '~/components/VideoTrailer.vue'
-import CarouselSlide from '~/components/CarouselSlide.vue'
-import CarouselSwiper from '~/components/CarouselSwiper.vue'
 
 export default {
-  components: { MovieList, VideoTrailer, CarouselSlide, CarouselSwiper },
-
-  computed: {
-    ...mapState(['home_movies']),
-  },
-
-  beforeMount() {
-    console.log('before mount')
-    this.getMovie()
-  },
-  data() {
-    return {
-      popcorns: [],
-      cartoons: [],
-    }
-  },
-
-  async mounted() {
-    const res = await this.$supabase
-      .from('movies')
-      .select('*')
-      .in('id', ['26', '14', '5', '6', '72', '8', '1'])
-    console.log('get korean', res)
-
-    this.popcorns = res.data.reverse()
-    this.cartoons = res.data
-  },
-
   methods: {
-    ...mapMutations(['HOME_MOVIES']),
-
-    async getMovie() {
-      const res = await this.$supabase.from('movies').select('*')
-      console.log('get movie', res)
-      this.HOME_MOVIES(res.data)
-    },
+    //api move to base movie slide component
   },
 }
+
 </script>
 
 <style lang="scss" scoped>
